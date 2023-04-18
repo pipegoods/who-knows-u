@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className='max-w-max mx-auto mt-5'>
       <p className='text-gray-500 text-sm'>
-        proyecto hecho con <span className='text-red-500'>❤</span> por{' '}
+        Proyecto hecho con <span className='text-red-500'>❤</span> por{' '}
         <a
           className='text-blue-500'
           href='https://github.com/pipegoods'
