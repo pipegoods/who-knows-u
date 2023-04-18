@@ -22,14 +22,17 @@ export default function App() {
   const removePlus = (dialCode: string) => dialCode.replace('+', '')
 
   return (
-    <div className='container px-2 md:px-0 grid place-content-center min-h-screen text-center mx-auto'>
+    <div className='container px-3 md:px-0 grid place-content-center min-h-screen text-center mx-auto'>
       <h1 className='text-3xl md:text-6xl font-bold font-dyna'>Who Knows U</h1>
       <h2 className='mt-5 text-sm md:text-lg'>
         Escribe mensajes de WhatsApp sin agregar el número a los contactos
       </h2>
 
-      <div className='flex mb-1 mt-10 items-center gap-1 px-10 border rounded-full'>
-        <aside className='relative inline-block' onClick={() => setOpen(!open)}>
+      <div className='flex mb-1 mt-10 items-center gap-1 border rounded-full'>
+        <aside
+          className='relative inline-block ml-5'
+          onClick={() => setOpen(!open)}
+        >
           <section className='cursor-pointer flex items-center justify-between p-2 border border-transparent rounded-sm'>
             <img
               className='w-8 h-8'
