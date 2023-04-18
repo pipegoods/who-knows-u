@@ -22,9 +22,9 @@ export default function App() {
   const removePlus = (dialCode: string) => dialCode.replace('+', '')
 
   return (
-    <div className='container grid place-content-center min-h-screen text-center mx-auto'>
-      <h1 className='text-6xl font-bold font-dyna'>Who Knows U</h1>
-      <h2 className='mt-5'>
+    <div className='container px-2 md:px-0 grid place-content-center min-h-screen text-center mx-auto'>
+      <h1 className='text-3xl md:text-6xl font-bold font-dyna'>Who Knows U</h1>
+      <h2 className='mt-5 text-sm md:text-lg'>
         Escribe mensajes de WhatsApp sin agregar el número a los contactos
       </h2>
 
@@ -75,7 +75,7 @@ export default function App() {
         </aside>
         <span>{phone.dialCode}</span>
         <input
-          className='flex-1 bg-transparent p-3 border border-transparent max-w-full  focus:outline-none '
+          className='text-sm md:text-lg flex-1 bg-transparent p-3 border border-transparent max-w-full  focus:outline-none '
           type='tel'
           pattern='[0-9]*'
           placeholder='Número de WhatsApp'
