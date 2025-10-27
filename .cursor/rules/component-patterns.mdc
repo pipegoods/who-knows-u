@@ -25,9 +25,10 @@ export default function ComponentName() {
 - Use Tailwind utility classes for styling
 - Responsive design with `md:`, `lg:` breakpoints
 - Dark mode support with `dark:` prefix
-- Custom font families available:
-  - `font-dyna` for headings (DynaPuff font)
-  - `font-sans` for body text (Poppins font)
+- **Fontsource Integration:** Custom font families configured in [index.css](mdc:src/index.css) using `@theme`:
+  - `font-dyna` for headings (DynaPuff font) - self-hosted via Fontsource
+  - `font-sans` for body text (Poppins font) - self-hosted via Fontsource
+- Fonts are imported in [main.tsx](mdc:src/main.tsx) from Fontsource packages
 
 ### Common Patterns
 

@@ -17,23 +17,25 @@
     "@fontsource/poppins": "^4.5.10",
     "@tailwindcss/vite": "^4.1.16",
     "prettier": "2.8.7",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-github-btn": "^1.4.0",
     "vite-tsconfig-paths": "^4.2.0"
   },
   "devDependencies": {
-    "@types/react": "18.0.28",
-    "@types/react-dom": "18.0.11",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "@typescript-eslint/eslint-plugin": "5.59.0",
     "@typescript-eslint/parser": "5.59.0",
     "@vitejs/plugin-react-swc": "3.0.0",
     "autoprefixer": "10.4.14",
+    "babel-plugin-react-compiler": "^1.0.0",
     "eslint": "8.38.0",
     "eslint-plugin-react": "7.32.2",
     "postcss": "8.4.22",
     "tailwindcss": "4.1.16",
     "typescript": "4.9.3",
-    "vite": "7.1.12"
+    "vite": "7.1.12",
+    "vite-plugin-pwa": "^1.1.0"
   }
 }

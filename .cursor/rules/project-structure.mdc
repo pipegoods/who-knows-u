@@ -28,8 +28,7 @@ This is a React + TypeScript project called "Who Knows U" - a WhatsApp chat open
 
 - [package.json](mdc:package.json) - Dependencies and scripts
 - [tsconfig.json](mdc:tsconfig.json) - TypeScript configuration with path aliases
-- [tailwind.config.js](mdc:tailwind.config.js) - Tailwind CSS configuration
-- [vite.config.ts](mdc:vite.config.ts) - Vite build configuration
+- [vite.config.ts](mdc:vite.config.ts) - Vite build configuration with Tailwind plugin
 - [.eslintrc.json](mdc:.eslintrc.json) - ESLint configuration
 - [.prettierrc.json](mdc:.prettierrc.json) - Prettier configuration
 
@@ -39,6 +38,9 @@ This is a React + TypeScript project called "Who Knows U" - a WhatsApp chat open
 - Country phone code selector
 - Phone number validation
 - Spanish language support (documentation and UI)
+- Tailwind CSS v4 with @theme configuration
+- Fontsource fonts (DynaPuff and Poppins)
+- Self-hosted fonts for better privacy and performance
 
 ### Path Aliases
 

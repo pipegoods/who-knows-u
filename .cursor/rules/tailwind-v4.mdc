@@ -1,0 +1,127 @@
+---
+globs: *.css,*.tsx,*.ts
+---
+
+# Tailwind CSS v4 Configuration
+
+## Font Configuration
+
+This project uses **Tailwind CSS v4** with **Fontsource** for self-hosted fonts.
+
+### Font Setup
+
+**Fonts are imported in [main.tsx](mdc:src/main.tsx):**
+
+```tsx
+import '@fontsource/poppins'
+import '@fontsource/dynapuff'
+```
+
+**Fonts are configured in [index.css](mdc:src/index.css) using `@theme`:**
+
+```css
+@import 'tailwindcss';
+
+@theme {
+  --font-dyna: 'DynaPuff', cursive;
+  --font-sans: 'Poppins', sans-serif;
+}
+```
+
+### Usage in Components
+
+Use the `font-{name}` utility class (without the "family" part):
+
+```tsx
+<h1 className='font-dyna'>Title</h1>
+<p className='font-sans'>Body text</p>
+```
+
+## Breaking Changes from v3
+
+### Deprecated Classes
+
+- ❌ `flex-grow-*` → ✅ `grow-*`
+- ❌ `flex-shrink-*` → ✅ `shrink-0`
+- ❌ `decoration-clone` → ✅ `box-decoration-clone`
+- ❌ `decoration-slice` → ✅ `box-decoration-slice`
+- ❌ `overflow-ellipsis` → ✅ `text-ellipsis`
+- ❌ `outline-none` → ✅ `outline-hidden`
+- ❌ `text-opacity-*` → ✅ `text-{color}/{opacity}` (e.g., `text-blue-500/50`)
+
+### Ring Utility
+
+Default ring width changed from `3px` to `1px`:
+
+```tsx
+/* For 3px ring, explicitly specify */
+className = 'ring-3 ring-blue-500'
+```
+
+### Syntax Changes
+
+**Variables in arbitrary values:**
+
+```tsx
+/* v3 */
+className = 'bg-[--brand-color]'
+
+/* v4 */
+className = 'bg-(--brand-color)'
+```
+
+## Configuration Pattern
+
+### Adding New Fonts
+
+1. Install Fontsource package:
+
+   ```bash
+   pnpm install @fontsource/{font-name}
+   ```
+
+2. Import in [main.tsx](mdc:src/main.tsx):
+
+   ```tsx
+   import '@fontsource/{font-name}'
+   ```
+
+3. Add to `@theme` in [index.css](mdc:src/index.css):
+
+   ```css
+   @theme {
+     --font-{name}: '{FontName}', fallback;
+   }
+   ```
+
+4. Use in components:
+   ```tsx
+   <div className='font-{name}'>Text</div>
+   ```
+
+### Custom Theme Variables
+
+Define custom theme tokens using `@theme` in CSS:
+
+```css
+@theme {
+  /* Colors */
+  --color-primary: #3b82f6;
+
+  /* Fonts */
+  --font-custom: 'Custom Font', sans-serif;
+
+  /* Spacing */
+  --spacing-custom: 2rem;
+
+  /* Breakpoints */
+  --breakpoint-custom: 1200px;
+}
+```
+
+## Development Tips
+
+- **Performance:** Tailwind v4 is 5x faster for full builds
+- **Configuration:** No JavaScript config file needed
+- **Imports:** Use `@import 'tailwindcss'` instead of `@tailwind` directives
+- **Fonts:** All fonts are self-hosted via Fontsource for better privacy and performance

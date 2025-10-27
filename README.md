@@ -1,27 +1,42 @@
-# who-knows-u
+# Who Knows U
 
-Herramienta para crear un chat de WhatsApp sin crear el contacto en tu agenda, solo con el número de teléfono.
+Envía mensajes de WhatsApp sin agregar números a tus contactos.
 
-## Tecnologías
+## 🚀 Características
 
-Proyecto practica de React, TS y Tailwind.
+- ✅ Validación de números de teléfono
+- ✅ Selector de código de país con banderas
+- ✅ Diseño responsive y mobile-first
+- ✅ Modo oscuro
+- ✅ PWA ready
+- ✅ 99/100 en Accesibilidad (Lighthouse)
+- ✅ Optimizado para Core Web Vitals
 
-## Contribuir
+## 🛠 Tecnologías
 
-Se aceptan PRs para mejorar o agregar funcionalidades.
+- React 19
+- TypeScript
+- Tailwind CSS v4
+- Vite
+- Fontsource (fuentes auto-hospedadas)
 
-## Instalación
+## 📦 Instalación
 
 ```bash
 pnpm install
 ```
 
-## Ejecución
+## 🎯 Ejecución
 
 ```bash
+# Desarrollo
 pnpm run dev
+
+# Producción
+pnpm run build
+pnpm run preview
 ```
 
-## Licencia
+## 📄 Licencia
 
 MIT
