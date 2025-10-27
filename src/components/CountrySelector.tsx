@@ -1,5 +1,6 @@
 import { useState, useCallback, useMemo } from 'react'
 import { COUNTRIES_PHONE, getCurrentCountry } from '@/data/countries-phone'
+import { useHapticFeedback } from '@/hooks/useHapticFeedback'
 import ChevronDownIcon from '@/icons/ChevronDownIcon'
 
 interface CountrySelectorProps {
@@ -12,19 +13,22 @@ export default function CountrySelector({
   onDialCodeChange,
 }: CountrySelectorProps) {
   const [open, setOpen] = useState<boolean>(false)
+  const { light } = useHapticFeedback()
 
   const currentCountry = useMemo(() => getCurrentCountry(dialCode), [dialCode])
 
   const handleToggle = useCallback(() => {
+    light()
     setOpen((prev) => !prev)
-  }, [])
+  }, [light])
 
   const handleCountrySelect = useCallback(
     (countryDialCode: string) => {
+      light()
       onDialCodeChange(countryDialCode)
       setOpen(false)
     },
-    [onDialCodeChange]
+    [light, onDialCodeChange]
   )
 
   return (
@@ -52,7 +56,7 @@ export default function CountrySelector({
       </section>
 
       {open && (
-        <div className='absolute top-full left-0 mt-2 w-[calc(100vw-2rem)] sm:w-96 max-w-md bg-white dark:bg-slate-800 border-2 border-gray-200 dark:border-gray-700 rounded-2xl shadow-2xl h-64 overflow-hidden z-50'>
+        <div className='absolute top-full left-0 mt-2 w-[calc(100vw-2rem)] sm:w-96 max-w-md bg-white dark:bg-slate-800 border-2 border-gray-200 dark:border-gray-700 rounded-2xl shadow-2xl h-64 overflow-hidden z-50 animate-slide-down'>
           <div className='p-3 h-full overflow-y-auto'>
             <div className='text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide px-2 mb-2'>
               Seleccionar país

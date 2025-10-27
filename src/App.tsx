@@ -1,7 +1,9 @@
 import { useState, useMemo, useCallback, lazy, Suspense } from 'react'
 import { COUNTRY_CO } from '@/data/countries-phone'
 import PhoneInput from '@/components/PhoneInput'
+import LoadingSkeleton from '@/components/LoadingSkeleton'
 import { validatePhone } from '@/utils/validateNumberPhone'
+import { useHapticFeedback } from '@/hooks/useHapticFeedback'
 import WhatsAppIcon from '@/icons/WhatsAppIcon'
 
 const Footer = lazy(() => import('@/components/Footer'))
@@ -13,6 +15,7 @@ export default function App() {
     dialCode: COUNTRY_CO.dial_code,
     number: '',
   })
+  const { success } = useHapticFeedback()
 
   const removePlus = useCallback((dialCode: string) => {
     return dialCode.replace('+', '')
@@ -54,27 +57,15 @@ export default function App() {
             rel='noopener noreferrer'
             className='group w-full mt-6 inline-flex items-center justify-center gap-3 px-8 py-4 bg-linear-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-2xl shadow-lg shadow-green-500/40 hover:shadow-xl hover:shadow-green-500/50 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] font-semibold text-base tracking-wide'
             aria-label='Abrir chat de WhatsApp'
+            onClick={success}
           >
-            <WhatsAppIcon className='w-6 h-6 shrink-0 fill-current' />
+            <WhatsAppIcon className='w-6 h-6 shrink-0 fill-current group-hover:animate-bounce' />
             <span className='whitespace-nowrap'>Abrir chat de WhatsApp</span>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              viewBox='0 0 24 24'
-              fill='none'
-              stroke='currentColor'
-              strokeWidth='2'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              className='w-5 h-5 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300'
-              aria-hidden='true'
-            >
-              <path d='m9 18 6-6-6-6' />
-            </svg>
           </a>
         )}
 
         {/* Footer */}
-        <Suspense fallback={null}>
+        <Suspense fallback={<LoadingSkeleton />}>
           <Footer />
         </Suspense>
       </div>
