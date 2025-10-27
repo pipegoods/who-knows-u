@@ -4,7 +4,7 @@ import CountrySelector from './CountrySelector'
 interface PhoneInputProps {
   phone: Phone
   onPhoneChange: (phone: Phone) => void
-  inputRef?: RefObject<HTMLInputElement>
+  inputRef?: RefObject<HTMLInputElement | null>
 }
 
 export default function PhoneInput({ phone, onPhoneChange, inputRef }: PhoneInputProps) {
