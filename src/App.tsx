@@ -78,7 +78,7 @@ export default function App() {
         </aside>
         <span>{phone.dialCode}</span>
         <input
-          className='text-sm md:text-lg flex-1 bg-transparent p-3 border border-transparent max-w-full  focus:outline-none '
+          className='text-sm md:text-lg flex-1 bg-transparent p-3 border border-transparent max-w-full  focus:outline-hidden '
           type='tel'
           pattern='[0-9]*'
           placeholder='Número de WhatsApp'

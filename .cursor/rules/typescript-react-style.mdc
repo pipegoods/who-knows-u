@@ -1,0 +1,60 @@
+---
+globs: *.ts,*.tsx
+---
+
+# TypeScript and React Style Guidelines
+
+## Code Style Rules
+
+Based on the project's Prettier and ESLint configuration:
+
+### Formatting
+
+- **No semicolons** - Code should not use semicolons
+- **Single quotes** - Use single quotes for strings
+- **JSX Single quotes** - Use single quotes in JSX attributes
+- **2 spaces** - Use 2 spaces for indentation
+- **80 characters** - Max line width (Prettier default is 80)
+- **Arrow parentheses** - Always include parentheses around arrow function parameters
+- **Line endings** - Use LF (Unix-style line endings)
+
+### TypeScript
+
+- Type definitions are in [types.d.ts](mdc:src/types.d.ts)
+- Strict mode is enabled in [tsconfig.json](mdc:tsconfig.json)
+- Use explicit types for function parameters and return values
+- Leverage TypeScript's type inference when types are obvious
+
+### React Conventions
+
+- Use functional components only
+- React imports are not needed (React 18 automatic JSX transform)
+- Use named exports for utility functions
+- Use default exports for React components
+- State management should use `useState` hook
+
+### Imports
+
+- Use path aliases with `@/` prefix for all src imports
+- Example: `import Footer from '@/components/Footer'`
+- External library imports come first
+- Group imports: external libraries, then internal imports
+
+### Examples
+
+```typescript
+// Good: No semicolons, single quotes, path alias
+import { validatePhone } from '@/utils/validateNumberPhone'
+import { COUNTRY_CO } from '@/data/countries-phone'
+
+export default function Component() {
+  const [value, setValue] = useState<string>('')
+
+  return <div className='text-center'>Hello</div>
+}
+
+// Good: Arrow function with parentheses
+const handleClick = (event: React.MouseEvent) => {
+  console.log('clicked')
+}
+```
