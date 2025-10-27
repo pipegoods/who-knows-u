@@ -1,0 +1,87 @@
+---
+description: React 19 migration guide and best practices
+globs: *.tsx
+---
+
+# React 19 Guide
+
+## Migration from React 18
+
+This project uses **React 19.2.0** with the following changes from React 18:
+
+### Import Changes
+
+React 19 uses named imports instead of default import:
+
+```tsx
+// ❌ Old (React 18)
+import React, { useState } from 'react'
+
+// ✅ New (React 19)
+import { useState, useMemo, useCallback, lazy, Suspense } from 'react'
+```
+
+### Entry Point
+
+The entry point in [main.tsx](mdc:src/main.tsx) uses modern React 19 patterns:
+
+```tsx
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App'
+
+createRoot(document.getElementById('root') as HTMLElement).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+)
+```
+
+## Performance Best Practices
+
+### Memoization
+
+Use `useMemo` for expensive calculations:
+
+```tsx
+const whatsappUrl = useMemo(() => {
+  if (!validatePhone(phone.number)) return ''
+  return `${API_WHATSAPP_URL}${removePlus(phone.dialCode)}${phone.number}`
+}, [phone, removePlus])
+```
+
+### Event Handlers
+
+Use `useCallback` for event handlers passed to child components:
+
+```tsx
+const handleCountrySelect = useCallback(
+  (countryDialCode: string) => {
+    onDialCodeChange(countryDialCode)
+    setOpen(false)
+  },
+  [onDialCodeChange]
+)
+```
+
+### Lazy Loading
+
+Use `React.lazy` and `Suspense` for code splitting:
+
+```tsx
+import { lazy, Suspense } from 'react'
+const Footer = lazy(() => import('@/components/Footer'))
+
+// In render:
+<Suspense fallback={null}>
+  <Footer />
+</Suspense>
+```
+
+## Key Features
+
+1. **No Default React Import**: Use named imports
+2. **createRoot**: Modern root API (already in React 18)
+3. **StrictMode**: Enabled for development warnings
+4. **Performance**: Built-in optimizations with hooks
+5. **TypeScript**: Full support with React 19 types

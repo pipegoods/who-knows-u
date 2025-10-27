@@ -28,10 +28,22 @@ Based on the project's Prettier and ESLint configuration:
 ### React Conventions
 
 - Use functional components only
-- React imports are not needed (React 18 automatic JSX transform)
+- React imports use named imports (e.g., `import { useState, useMemo } from 'react'`)
 - Use named exports for utility functions
 - Use default exports for React components
 - State management should use `useState` hook
+- Use `useCallback` and `useMemo` for performance optimization
+- Use `lazy` and `Suspense` for code splitting
+
+### React 19 Best Practices
+
+- Import hooks as named exports from 'react'
+- Use `createRoot` in [main.tsx](mdc:src/main.tsx) (React 18+ pattern)
+- Wrap app in `StrictMode` for development warnings
+- Implement performance optimizations:
+  - `useMemo` for expensive calculations
+  - `useCallback` for event handlers
+  - `React.lazy` for lazy loading components
 
 ### Imports
 
@@ -44,17 +56,25 @@ Based on the project's Prettier and ESLint configuration:
 
 ```typescript
 // Good: No semicolons, single quotes, path alias
+import { useState, useMemo, useCallback } from 'react'
 import { validatePhone } from '@/utils/validateNumberPhone'
 import { COUNTRY_CO } from '@/data/countries-phone'
 
 export default function Component() {
   const [value, setValue] = useState<string>('')
 
+  const memoizedValue = useMemo(() => {
+    return expensiveCalculation(value)
+  }, [value])
+
+  const handleClick = useCallback((event: React.MouseEvent) => {
+    console.log('clicked')
+  }, [])
+
   return <div className='text-center'>Hello</div>
 }
 
-// Good: Arrow function with parentheses
-const handleClick = (event: React.MouseEvent) => {
-  console.log('clicked')
-}
+// Good: Lazy loading
+import { lazy, Suspense } from 'react'
+const Footer = lazy(() => import('@/components/Footer'))
 ```

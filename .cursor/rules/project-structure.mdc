@@ -11,36 +11,47 @@ This is a React + TypeScript project called "Who Knows U" - a WhatsApp chat open
 ## Main Entry Points
 
 - [App.tsx](mdc:src/App.tsx) - Main application component
-- [main.tsx](mdc:src/main.tsx) - Application entry point
-- [index.html](mdc:index.html) - HTML entry point
+- [main.tsx](mdc:src/main.tsx) - Application entry point with React 19 imports
+- [index.html](mdc:index.html) - HTML entry point with PWA manifest and meta tags
 
 ## Project Structure
 
 ### Source Organization
 
-- `src/components/` - React components (e.g., [Footer.tsx](mdc:src/components/Footer.tsx))
-- `src/data/` - Static data and constants (e.g., [countries-phone.ts](mdc:src/data/countries-phone.ts))
+- `src/components/` - React components
+  - [Footer.tsx](mdc:src/components/Footer.tsx) - Footer with tech badges
+  - [PhoneInput.tsx](mdc:src/components/PhoneInput.tsx) - Phone input with country selector
+  - [CountrySelector.tsx](mdc:src/components/CountrySelector.tsx) - Country dropdown selector
+- `src/icons/` - SVG icon components
+  - [WhatsAppIcon.tsx](mdc:src/icons/WhatsAppIcon.tsx)
+  - [GitHubStarIcon.tsx](mdc:src/icons/GitHubStarIcon.tsx)
+  - [ChevronDownIcon.tsx](mdc:src/icons/ChevronDownIcon.tsx)
+- `src/data מונ movable` - Static data and constants (e.g., [countries-phone.ts](mdc:src/data/countries-phone.ts))
 - `src/utils/` - Utility functions (e.g., [validateNumberPhone.ts](mdc:src/utils/validateNumberPhone.ts))
 - `src/types.d.ts` - Type definitions
-- `src/index.css` - Global styles and Tailwind imports
+- `src/index.css` - Global styles and Tailwind imports with animations
 
 ### Configuration Files
 
 - [package.json](mdc:package.json) - Dependencies and scripts
 - [tsconfig.json](mdc:tsconfig.json) - TypeScript configuration with path aliases
-- [vite.config.ts](mdc:vite.config.ts) - Vite build configuration with Tailwind plugin
+- [vite.config.ts](mdc:vite.config.ts) - Vite build configuration with PWA plugin
 - [.eslintrc.json](mdc:.eslintrc.json) - ESLint configuration
 - [.prettierrc.json](mdc:.prettierrc.json) - Prettier configuration
 
 ### Key Features
 
 - WhatsApp link generation for direct messaging
-- Country phone code selector
+- Country phone code selector with lazy-loaded images
 - Phone number validation
 - Spanish language support (documentation and UI)
 - Tailwind CSS v4 with @theme configuration
 - Fontsource fonts (DynaPuff and Poppins)
 - Self-hosted fonts for better privacy and performance
+- PWA support with service workers
+- React 19 with latest hooks and optimizations
+- Lazy loading for performance
+- Mobile-first responsive design
 
 ### Path Aliases
 

@@ -9,21 +9,57 @@ description: React component patterns and conventions
 ### Standard Component Template
 
 ```tsx
-import { useState } from 'react'
+import { useState, useCallback, useMemo } from 'react'
 
-export default function ComponentName() {
+interface ComponentProps {
+  prop: string
+}
+
+export default function ComponentName({ prop }: ComponentProps) {
   const [state, setState] = useState<Type>(initialValue)
+
+  const memoizedValue = useMemo(() => {
+    return computeValue(prop)
+  }, [prop])
+
+  const handleEvent = useCallback(() => {
+    // Handle event
+  }, [])
 
   return <div className=''>{/* JSX content */}</div>
 }
 ```
+
+## Performance Optimization
+
+### Use React Hooks for Performance
+
+- **useMemo**: Cache expensive calculations
+- **useCallback**: Memoize event handlers
+- **lazy/Suspense**: Lazy load components below the fold
+
+Example from [App.tsx](mdc:src/App.tsx):
+```tsx
+const Footer = lazy(() => import('@/components/Footer'))
+
+// In JSX:
+<Suspense fallback={null}>
+  <Footer />
+</Suspense>
+```
+
+### Image Optimization
+
+- Use `loading='lazy'` for images below the fold
+- Use `loading='eager'` for above-the-fold images
+- Example: Bandera images in [CountrySelector.tsx](mdc:src/components/CountrySelector.tsx)
 
 ## Styling Conventions
 
 ### Tailwind CSS Usage
 
 - Use Tailwind utility classes for styling
-- Responsive design with `md:`, `lg:` breakpoints
+- Mobile-first responsive design with `sm:`, `md:`, `lg:` breakpoints
 - Dark mode support with `dark:` prefix
 - **Fontsource Integration:** Custom font families configured in [index.css](mdc:src/index.css) using `@theme`:
   - `font-dyna` for headings (DynaPuff font) - self-hosted via Fontsource
@@ -32,30 +68,54 @@ export default function ComponentName() {
 
 ### Common Patterns
 
-- **Containers**: `container mx-auto px-3 md:px-0`
-- **Layout**: `flex`, `grid`, `place-content-center`
-- **Spacing**: Use Tailwind spacing scale (e.g., `mt-5`, `gap-2`, `p-3`)
-- **Borders**: `border rounded-full`, `rounded-sm`
-- **Colors**: Use semantic color classes (e.g., `text-blue-500`, `bg-green-500`)
-- **Transitions**: `hover:`, `focus:`, `dark:` state modifiers
+- **Containers**: `container mx-auto px-4 max-w-md`
+- **Layout**: `flex`, `grid`, `place-content-center`, `min-h-screen`
+- **Spacing**: Use Tailwind spacing scale (e.g., `mt-6`, `gap-3`, `p-2`)
+- **Borders**: `border-2`, `rounded-2xl`, `rounded-xl`
+- **Colors**: Use semantic color classes (e.g., `text-green-600`, `bg-green-500`)
+- **Transitions**: `transition-all`, `duration-300`, `hover:`, `focus-within:`
+- **Gradients**: `bg-linear-to-b`, `bg-linear-to-r` (Tailwind v4 syntax)
+- **Shadows**: `shadow-lg`, `shadow-green-500/40`
 
 ### Example from the codebase
 
 ```tsx
-// From App.tsx - phone input container
-<div className='flex mb-1 mt-10 items-center gap-1 border rounded-full'>
-  {/* Country selector */}
-  <aside className='relative inline-block ml-5'>
-    <section className='cursor-pointer flex items-center justify-between p-2'>
-      {/* Content */}
-    </section>
-  </aside>
-</div>
-
-// WhatsApp button
-<a className='max-w-max mx-auto flex gap-2 items-center mt-5 px-10 py-2 bg-green-500 text-white rounded-full'>
+// From App.tsx - CTA button
+<a
+  className='group w-full mt-6 inline-flex items-center justify-center gap-3 px-8 py-4 bg-linear-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-2xl shadow-lg shadow-green-500/40 hover:shadow-xl hover:shadow-green-500/50 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] font-semibold text-base tracking-wide'
+>
   {/* Button content */}
 </a>
+```
+
+## Accessibility
+
+### ARIA Attributes
+
+- Use `aria-label` for descriptive text
+- Use `aria-hidden='true'` for decorative elements
+- Use `aria-expanded` for expandable components
+- Use `role='button'` or `role='listbox'` when appropriate
+- Use `tabIndex={0}` for keyboard navigation
+
+### Semantic HTML
+
+- Use `<header>`, `<main>`, `<section>`, `<footer>` appropriately
+- Use `<label>` for form inputs
+- Use `inputMode='numeric'` for telephone inputs
+- Use `autoComplete='tel'` for phone inputs
+
+Example from [PhoneInput.tsx](mdc:src/components/PhoneInput.tsx):
+```tsx
+<label className='flex items-center gap-1...'>
+  <input
+    type='tel'
+    inputMode='numeric'
+    aria-label='Número de teléfono de WhatsApp'
+    aria-required='true'
+    autoComplete='tel'
+  />
+</label>
 ```
 
 ## Utility Functions
@@ -76,7 +136,9 @@ export default function ComponentName() {
 
 1. **Separation of Concerns**: Keep components focused and small
 2. **Type Safety**: Always use TypeScript types
-3. **Reusability**: Create reusable utility functions
+3. **Reusability**: Create reusable utility functions and components
 4. **Responsive**: Design mobile-first with responsive breakpoints
-5. **Accessibility**: Include alt text for images, aria-labels when needed
-6. **Performance**: Use React hooks appropriately (useState, etc.)
+5. **Accessibility**: Include alt text for images, aria-labels when needed, semantic HTML
+6. **Performance**: Use React hooks appropriately (useMemo, useCallback, lazy)
+7. **Code Splitting**: Lazy load components below the fold
+8. **Image Loading**: Use lazy loading for images not immediately visible
