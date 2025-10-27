@@ -1,0 +1,81 @@
+---
+description: React component patterns and conventions
+---
+
+# Component Patterns
+
+## Component Structure
+
+### Standard Component Template
+
+```tsx
+import { useState } from 'react'
+
+export default function ComponentName() {
+  const [state, setState] = useState<Type>(initialValue)
+
+  return <div className=''>{/* JSX content */}</div>
+}
+```
+
+## Styling Conventions
+
+### Tailwind CSS Usage
+
+- Use Tailwind utility classes for styling
+- Responsive design with `md:`, `lg:` breakpoints
+- Dark mode support with `dark:` prefix
+- Custom font families available:
+  - `font-dyna` for headings (DynaPuff font)
+  - `font-sans` for body text (Poppins font)
+
+### Common Patterns
+
+- **Containers**: `container mx-auto px-3 md:px-0`
+- **Layout**: `flex`, `grid`, `place-content-center`
+- **Spacing**: Use Tailwind spacing scale (e.g., `mt-5`, `gap-2`, `p-3`)
+- **Borders**: `border rounded-full`, `rounded-sm`
+- **Colors**: Use semantic color classes (e.g., `text-blue-500`, `bg-green-500`)
+- **Transitions**: `hover:`, `focus:`, `dark:` state modifiers
+
+### Example from the codebase
+
+```tsx
+// From App.tsx - phone input container
+<div className='flex mb-1 mt-10 items-center gap-1 border rounded-full'>
+  {/* Country selector */}
+  <aside className='relative inline-block ml-5'>
+    <section className='cursor-pointer flex items-center justify-between p-2'>
+      {/* Content */}
+    </section>
+  </aside>
+</div>
+
+// WhatsApp button
+<a className='max-w-max mx-auto flex gap-2 items-center mt-5 px-10 py-2 bg-green-500 text-white rounded-full'>
+  {/* Button content */}
+</a>
+```
+
+## Utility Functions
+
+### Phone Validation
+
+- Located in [validateNumberPhone.ts](mdc:src/utils/validateNumberPhone.ts)
+- Export functions with descriptive names
+- Use TypeScript types
+
+### Data Constants
+
+- Static data in [countries-phone.ts](mdc:src/data/countries-phone.ts)
+- Export constant arrays and helper functions
+- Example: `export const COUNTRIES_PHONE: CountryFlag[]`
+
+## Best Practices
+
+1. **Separation of Concerns**: Keep components focused and small
+2. **Type Safety**: Always use TypeScript types
+3. **Reusability**: Create reusable utility functions
+4. **Responsive**: Design mobile-first with responsive breakpoints
+5. **Accessibility**: Include alt text for images, aria-labels when needed
+6. **Performance**: Use React hooks appropriately (useState, etc.)

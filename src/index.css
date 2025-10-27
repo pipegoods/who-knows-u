@@ -1,3 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  /* Custom font families */
+  --font-family-dyna: '"DynaPuff", cursive';
+  --font-family-sans: '"Poppins", sans-serif';
+}

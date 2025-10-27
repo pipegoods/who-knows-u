@@ -1,0 +1,46 @@
+---
+alwaysApply: true
+---
+
+# Project Structure Guide
+
+## Overview
+
+This is a React + TypeScript project called "Who Knows U" - a WhatsApp chat opener tool that allows users to send messages without adding contacts.
+
+## Main Entry Points
+
+- [App.tsx](mdc:src/App.tsx) - Main application component
+- [main.tsx](mdc:src/main.tsx) - Application entry point
+- [index.html](mdc:index.html) - HTML entry point
+
+## Project Structure
+
+### Source Organization
+
+- `src/components/` - React components (e.g., [Footer.tsx](mdc:src/components/Footer.tsx))
+- `src/data/` - Static data and constants (e.g., [countries-phone.ts](mdc:src/data/countries-phone.ts))
+- `src/utils/` - Utility functions (e.g., [validateNumberPhone.ts](mdc:src/utils/validateNumberPhone.ts))
+- `src/types.d.ts` - Type definitions
+- `src/index.css` - Global styles and Tailwind imports
+
+### Configuration Files
+
+- [package.json](mdc:package.json) - Dependencies and scripts
+- [tsconfig.json](mdc:tsconfig.json) - TypeScript configuration with path aliases
+- [tailwind.config.js](mdc:tailwind.config.js) - Tailwind CSS configuration
+- [vite.config.ts](mdc:vite.config.ts) - Vite build configuration
+- [.eslintrc.json](mdc:.eslintrc.json) - ESLint configuration
+- [.prettierrc.json](mdc:.prettierrc.json) - Prettier configuration
+
+### Key Features
+
+- WhatsApp link generation for direct messaging
+- Country phone code selector
+- Phone number validation
+- Spanish language support (documentation and UI)
+
+### Path Aliases
+
+- Use `@/` prefix to import from `src/` directory (e.g., `@/components/Footer`)
+- Configured in [tsconfig.json](mdc:tsconfig.json)
