@@ -13,6 +13,7 @@
     "prettier:fix": "prettier --write \"src/**/(*.tsx|*.ts|*.css|*.scss)\""
   },
   "dependencies": {
+    "@fontsource/dynapuff": "^5.2.8",
     "@fontsource/poppins": "^4.5.10",
     "@tailwindcss/vite": "^4.1.16",
     "prettier": "2.8.7",

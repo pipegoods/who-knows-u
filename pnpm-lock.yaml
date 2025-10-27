@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@fontsource/dynapuff':
+        specifier: ^5.2.8
+        version: 5.2.8
       '@fontsource/poppins':
         specifier: ^4.5.10
         version: 4.5.10
@@ -242,6 +245,9 @@ packages:
   '@eslint/js@8.38.0':
     resolution: {integrity: sha512-IoD2MfUnOV58ghIHCiil01PcohxjbYR/qCxsoC+xNgUwh1EY8jOOrYmu3d3a71+tJJ23uscEV4X2HJWMsPJu4g==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+
+  '@fontsource/dynapuff@5.2.8':
+    resolution: {integrity: sha512-/oP/t8t6uo8hJoUiKUWZ9UG+5kP89e9ma6ZE5bYCIO1v98+xaDyVAm/ncY8kb4ckQ1nH5mA/AWc2d4th0Kms4Q==}
 
   '@fontsource/poppins@4.5.10':
     resolution: {integrity: sha512-oYZVHsnlwV3VWM1SE/m6SUxVh0QLk5+2wB+lBiXcI7N/0KVQWmV9YykaPqfJHBLvmdya+MAOnv+BQHeLU1vOOw==}
@@ -1893,6 +1899,8 @@ snapshots:
       - supports-color
 
   '@eslint/js@8.38.0': {}
+
+  '@fontsource/dynapuff@5.2.8': {}
 
   '@fontsource/poppins@4.5.10': {}
 
