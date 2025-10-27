@@ -1,12 +1,13 @@
-import { useCallback, type ChangeEvent } from 'react'
+import { useCallback, type ChangeEvent, type RefObject } from 'react'
 import CountrySelector from './CountrySelector'
 
 interface PhoneInputProps {
   phone: Phone
   onPhoneChange: (phone: Phone) => void
+  inputRef?: RefObject<HTMLInputElement>
 }
 
-export default function PhoneInput({ phone, onPhoneChange }: PhoneInputProps) {
+export default function PhoneInput({ phone, onPhoneChange, inputRef }: PhoneInputProps) {
   const handleNumberChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const newNumber = e.target.validity.valid ? e.target.value : phone.number
@@ -42,6 +43,7 @@ export default function PhoneInput({ phone, onPhoneChange }: PhoneInputProps) {
         {phone.dialCode}
       </span>
       <input
+        ref={inputRef}
         className='text-base flex-1 bg-transparent border-none outline-none p-2 pl-1 text-gray-900 dark:text-white placeholder:text-gray-400'
         type='tel'
         pattern='[0-9]*'
