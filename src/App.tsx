@@ -62,14 +62,13 @@ export default function App() {
           <ActionButtons
             whatsappUrl={whatsappUrl}
             onCopy={handleCopyLink}
-            onShare={handleShare}
             onWhatsAppClick={success}
             copied={copied}
           />
         )}
 
         <Suspense fallback={<LoadingSkeleton />}>
-          <Footer />
+          <Footer onShareApp={handleShare} />
         </Suspense>
       </div>
     </div>

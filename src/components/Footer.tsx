@@ -1,6 +1,11 @@
 import GitHubStarIcon from '@/icons/GitHubStarIcon'
+import ShareIcon from '@/icons/ShareIcon'
 
-export default function Footer() {
+interface FooterProps {
+  onShareApp?: () => void
+}
+
+export default function Footer({ onShareApp }: FooterProps) {
   return (
     <footer className='mt-12 space-y-4 animate-fade-in'>
       {/* Attribution */}
@@ -39,8 +44,18 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* GitHub Star Button */}
-      <div className='flex justify-center pt-2'>
+      {/* Action Buttons */}
+      <div className='flex flex-wrap justify-center gap-3 pt-2'>
+        {onShareApp && (
+          <button
+            onClick={onShareApp}
+            className='group inline-flex items-center gap-2 px-5 py-2.5 bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-800 text-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 font-medium text-sm'
+            aria-label='Compartir app'
+          >
+            <ShareIcon className='w-5 h-5 group-hover:scale-110 transition-transform duration-200' />
+            <span>Compartir</span>
+          </button>
+        )}
         <a
           href='https://github.com/pipegoods/who-knows-u'
           target='_blank'
