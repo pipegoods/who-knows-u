@@ -7,7 +7,11 @@ interface PhoneInputProps {
   inputRef?: RefObject<HTMLInputElement | null>
 }
 
-export default function PhoneInput({ phone, onPhoneChange, inputRef }: PhoneInputProps) {
+export default function PhoneInput({
+  phone,
+  onPhoneChange,
+  inputRef,
+}: PhoneInputProps) {
   const handleNumberChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const newNumber = e.target.validity.valid ? e.target.value : phone.number
