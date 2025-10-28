@@ -21,6 +21,8 @@ export default defineConfig({
         theme_color: '#ffffff',
         background_color: '#ffffff',
         display: 'standalone',
+        start_url: '/',
+        scope: '/',
         icons: [
           {
             src: '/android-chrome-192x192.png',
@@ -32,9 +34,32 @@ export default defineConfig({
             sizes: '512x512',
             type: 'image/png',
           },
+          {
+            src: '/android-chrome-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any maskable',
+          },
+        ],
+        shortcuts: [
+          {
+            name: 'Abrir chat de WhatsApp',
+            short_name: 'Abrir chat',
+            description: 'Abrir la pantalla principal para enviar un mensaje',
+            url: '/',
+            icons: [{ src: '/android-chrome-192x192.png', sizes: '192x192' }],
+          },
+          {
+            name: 'Copiar link',
+            short_name: 'Copiar',
+            description: 'Copiar link rápido al portapapeles',
+            url: '/',
+            icons: [{ src: '/android-chrome-192x192.png', sizes: '192x192' }],
+          },
         ],
       },
       workbox: {
+        navigateFallback: '/index.html',
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff,woff2}'],
         runtimeCaching: [
           {

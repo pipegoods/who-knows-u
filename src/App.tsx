@@ -2,6 +2,7 @@ import { useState, useMemo, useCallback, lazy, Suspense, useRef } from 'react'
 import { COUNTRY_CO } from '@/data/countries-phone'
 import PhoneInput from '@/components/PhoneInput'
 import Header from '@/components/Header'
+import UpdateBanner from '@/components/UpdateBanner'
 import ActionButtons from '@/components/ActionButtons'
 import LoadingSkeleton from '@/components/LoadingSkeleton'
 import { validatePhone } from '@/utils/validateNumberPhone'
@@ -48,6 +49,7 @@ export default function App() {
   return (
     <div className='min-h-screen bg-linear-to-b from-slate-100 via-white to-slate-100'>
       <div className='container px-4 grid place-content-center min-h-screen mx-auto max-w-md py-8 relative'>
+        <UpdateBanner />
         <Header />
 
         <section className='w-full' aria-label='Formulario de ingreso'>
