@@ -11,7 +11,7 @@ declare module 'virtual:pwa-register' {
       swScriptUrl: string,
       registration: ServiceWorkerRegistration | undefined
     ) => void
-  onRegisterError?: (error: unknown) => void
+    onRegisterError?: (error: unknown) => void
   }
 
   export function registerSW(
@@ -31,7 +31,7 @@ declare module 'virtual:pwa-register/react' {
       swScriptUrl: string,
       registration: ServiceWorkerRegistration | undefined
     ) => void
-  onRegisterError?: (error: unknown) => void
+    onRegisterError?: (error: unknown) => void
   }
 
   export function useRegisterSW(options?: RegisterSWOptions): {
