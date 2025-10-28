@@ -46,7 +46,7 @@ export default function App() {
   })
 
   return (
-    <div className='min-h-screen bg-linear-to-b from-slate-50 to-white dark:from-slate-950 dark:to-slate-900'>
+    <div className='min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-gray-950 dark:via-slate-950 dark:to-gray-950'>
       <div className='container px-4 grid place-content-center min-h-screen mx-auto max-w-md py-8 relative'>
         <Header />
 
