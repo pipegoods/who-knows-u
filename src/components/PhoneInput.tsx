@@ -31,7 +31,7 @@ export default function PhoneInput({ phone, onPhoneChange, inputRef }: PhoneInpu
   )
 
   return (
-    <label className='flex items-center gap-1 bg-white dark:bg-gray-900 border-2 border-gray-300 dark:border-gray-700 rounded-2xl p-2 shadow-md hover:border-green-500 dark:hover:border-green-600 transition-all duration- прежде focus-within:border-green-500 dark:focus-within:border-green-600 focus-within:shadow-lg cursor-text'>
+    <label className='flex items-center gap-1 bg-white dark:bg-gray-900 border-2 border-gray-300 dark:border-gray-700 rounded-2xl p-2 shadow-md hover:border-green-500 dark:hover:border-green-600 transition-all duration-300 focus-within:border-green-500 dark:focus-within:border-green-600 focus-within:shadow-lg cursor-text'>
       <CountrySelector
         dialCode={phone.dialCode}
         onDialCodeChange={handleDialCodeChange}
