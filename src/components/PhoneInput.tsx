@@ -44,7 +44,7 @@ export default function PhoneInput({ phone, onPhoneChange, inputRef }: PhoneInpu
       </span>
       <input
         ref={inputRef}
-        className='text-base flex-1 bg-transparent border-none outline-none p-2 pl-1 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500'
+        className='text-base flex-1 bg-transparent border-none outline-none p-2 pl-1 text-slate-900 dark:text-gray-100 placeholder:text-slate-400 dark:placeholder:text-gray-500'
         type='tel'
         pattern='[0-9]*'
         inputMode='numeric'

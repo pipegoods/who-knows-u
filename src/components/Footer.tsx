@@ -10,7 +10,7 @@ export default function Footer({ onShareApp }: FooterProps) {
     <footer className='mt-12 space-y-4 animate-fade-in'>
       {/* Attribution */}
       <div className='flex flex-col items-center gap-3'>
-        <p className='text-sm text-gray-600 dark:text-gray-400'>
+        <p className='text-sm text-slate-600 dark:text-gray-400'>
           Hecho con{' '}
           <span
             className='inline-block animate-pulse'
