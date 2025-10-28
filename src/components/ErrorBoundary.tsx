@@ -38,22 +38,22 @@ export default class ErrorBoundary extends Component<
       }
 
       return (
-        <div className='min-h-screen bg-linear-to-b from-slate-50 to-white dark:from-slate-950 dark:to-slate-900 flex items-center justify-center p-4'>
+        <div className='min-h-screen bg-linear-to-b from-slate-50 to-white flex items-center justify-center p-4'>
           <div className='max-w-md w-full text-center space-y-4'>
             <div className='text-6xl mb-4'>😅</div>
-            <h1 className='text-2xl font-bold font-dyna text-gray-900 dark:text-white'>
+            <h1 className='text-2xl font-bold font-dyna text-gray-900'>
               ¡Ups! Discovery un error
             </h1>
-            <p className='text-gray-600 dark:text-gray-400'>
+            <p className='text-gray-600'>
               Algo salió mal, pero no te preocupes. Presiona el botón para
               intentar de nuevo.
             </p>
             {this.state.error && (
-              <details className='text-left bg-gray-100 dark:bg-gray-800 rounded-lg p-4 mt-4'>
-                <summary className='cursor-pointer text-sm font-medium text-gray-700 dark:text-gray-300'>
+              <details className='text-left bg-gray-100 rounded-lg p-4 mt-4'>
+                <summary className='cursor-pointer text-sm font-medium text-gray-700'>
                   Detalles técnicos
                 </summary>
-                <pre className='mt-2 text-xs text-gray-600 dark:text-gray-400 overflow-auto'>
+                <pre className='mt-2 text-xs text-gray-600 overflow-auto'>
                   {this.state.error.message}
                 </pre>
               </details>
@@ -72,4 +72,3 @@ export default class ErrorBoundary extends Component<
     return this.props.children
   }
 }
-

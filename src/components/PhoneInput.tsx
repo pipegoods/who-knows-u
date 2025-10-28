@@ -41,7 +41,7 @@ export default function PhoneInput({
         onDialCodeChange={handleDialCodeChange}
       />
       <span
-        className='hidden sm:inline text-slate-700 font-medium px-1'
+        className='inline text-slate-700 font-medium px-1'
         aria-hidden='true'
       >
         {phone.dialCode}
