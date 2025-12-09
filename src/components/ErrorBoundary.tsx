@@ -24,7 +24,12 @@ export default class ErrorBoundary extends Component<
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error('Error caught by boundary:', error, errorInfo)
+    // Log errors siempre, pero con menos detalle en producción
+    if (import.meta.env.DEV) {
+      console.error('Error caught by boundary:', error, errorInfo)
+    } else {
+      console.error('Error caught by boundary:', error.message)
+    }
   }
 
   handleReset = () => {

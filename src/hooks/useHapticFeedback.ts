@@ -8,9 +8,11 @@ export function useHapticFeedback() {
     if ('vibrate' in navigator) {
       try {
         navigator.vibrate(pattern)
-      } catch (error) {
+      } catch {
         // Silently fail si no se puede vibrar
-        console.debug('Haptic feedback no disponible')
+        if (import.meta.env.DEV) {
+          console.debug('Haptic feedback no disponible')
+        }
       }
     }
   }

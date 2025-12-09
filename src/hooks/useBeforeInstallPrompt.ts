@@ -30,7 +30,9 @@ export function useBeforeInstallPrompt() {
       setDeferredPrompt(null)
       return choice
     } catch (err) {
-      console.error('Install prompt failed', err)
+      if (import.meta.env.DEV) {
+        console.error('Install prompt failed', err)
+      }
       setDeferredPrompt(null)
       return null
     }

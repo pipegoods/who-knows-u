@@ -48,7 +48,7 @@ export default function App() {
 
   return (
     <div className='min-h-screen bg-linear-to-b from-slate-100 via-white to-slate-100'>
-      <div className='container px-4 grid place-content-center min-h-screen mx-auto max-w-md py-8 relative'>
+      <div className='container px-4 sm:px-6 grid place-content-center min-h-screen mx-auto max-w-md py-6 sm:py-8 relative'>
         <UpdateBanner />
         <Header />
 
