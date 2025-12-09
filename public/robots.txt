@@ -2,5 +2,5 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://who-knows-u.vercel.app/sitemap.xml
+Sitemap: https://who.pipegoods.dev/sitemap.xml
 

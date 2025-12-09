@@ -3,7 +3,7 @@ import { useHapticFeedback } from './useHapticFeedback'
 import { useCopyToClipboard } from './useCopyToClipboard'
 import { shareApp } from '@/utils/whatsapp'
 
-const APP_URL = 'https://who-knows-u.vercel.app'
+const APP_URL = 'https://who.pipegoods.dev'
 
 export function useShareApp() {
   const { light } = useHapticFeedback()

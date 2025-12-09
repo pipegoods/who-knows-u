@@ -9,7 +9,7 @@ export function buildWhatsAppUrl(dialCode: string, number: string): string {
   return `${API_WHATSAPP_URL}${removePlus(dialCode)}${number}`
 }
 
-const shareUrl = 'https://who-knows-u.vercel.app'
+const shareUrl = 'https://who.pipegoods.dev'
 
 export async function shareApp(): Promise<boolean> {
   if (navigator.share) {
