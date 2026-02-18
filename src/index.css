@@ -4,13 +4,68 @@
   /* Custom font families with Fontsource */
   --font-dyna: 'DynaPuff', cursive;
   --font-sans: 'Poppins', sans-serif;
+
+  /* Design Tokens - OKLCH Colors - Nueva Identidad Visual */
+  
+  /* Primary (Violeta moderno digital) */
+  --color-primary: oklch(65% 0.15 280);
+  --color-primary-foreground: oklch(100% 0 0);
+  --color-primary-hover: oklch(60% 0.15 280);
+  --color-primary-active: oklch(55% 0.15 280);
+  --color-primary-light: oklch(95% 0.05 280);
+  --color-primary-border: oklch(80% 0.08 280);
+
+  /* Background & Surfaces */
+  --color-background: oklch(98% 0.01 280);
+  --color-surface: oklch(100% 0 0);
+  --color-surface-elevated: oklch(100% 0 0);
+  --color-surface-subtle: oklch(96% 0.005 280);
+
+  /* Text Hierarchy */
+  --color-text-primary: oklch(25% 0.02 250);
+  --color-text-secondary: oklch(50% 0.02 250);
+  --color-text-tertiary: oklch(65% 0.02 250);
+  --color-text-muted: oklch(75% 0.01 250);
+
+  /* Borders - Progression System (muy sutiles) */
+  --color-border: oklch(88% 0.01 250);
+  --color-border-soft: oklch(92% 0.005 250);
+  --color-border-emphasis: oklch(70% 0.05 280);
+  --color-border-focus: oklch(65% 0.15 280);
+
+  /* Control Tokens (Form Inputs) */
+  --color-control-bg: oklch(96% 0.005 280);
+  --color-control-border: oklch(88% 0.01 250);
+  --color-control-border-hover: oklch(75% 0.05 280);
+  --color-control-border-focus: oklch(65% 0.15 280);
+
+  /* Accent (Amarillo ámbar para highlights) */
+  --color-accent: oklch(85% 0.12 70);
+  --color-accent-hover: oklch(80% 0.12 70);
+
+  /* Radius Tokens */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+
+  /* Shadow Tokens - Muy sutiles */
+  --shadow-sm: 0 1px 2px 0 oklch(0% 0 0 / 0.03);
+  --shadow-md: 0 4px 6px -1px oklch(0% 0 0 / 0.05), 0 2px 4px -2px oklch(0% 0 0 / 0.03);
+  --shadow-lg: 0 10px 15px -3px oklch(0% 0 0 / 0.05), 0 4px 6px -4px oklch(0% 0 0 / 0.03);
+  
+  /* Glow Effects */
+  --glow-sm: 0 0 0 2px oklch(65% 0.15 280 / 0.1);
+  --glow-md: 0 0 0 3px oklch(65% 0.15 280 / 0.15);
+  --glow-lg: 0 0 0 6px oklch(65% 0.15 280 / 0.1);
+  --glow-inner: inset 0 0 0 1px oklch(65% 0.15 280 / 0.2);
 }
 
-/* Animations */
+/* Animations - Compositor-friendly (transform + opacity only) */
 @keyframes fade-in {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(0.5rem);
   }
   to {
     opacity: 1;
@@ -21,7 +76,7 @@
 @keyframes slide-down {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-0.5rem);
   }
   to {
     opacity: 1;
@@ -32,7 +87,7 @@
 @keyframes slide-up {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(1rem);
   }
   to {
     opacity: 1;
@@ -56,7 +111,7 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-0.5rem);
   }
 }
 
@@ -70,26 +125,27 @@
   50%,
   70%,
   90% {
-    transform: translateX(-4px);
+    transform: translateX(-0.25rem);
   }
   20%,
   40%,
   60%,
   80% {
-    transform: translateX(4px);
+    transform: translateX(0.25rem);
   }
 }
 
+/* Animation utilities with prefers-reduced-motion support */
 .animate-fade-in {
-  animation: fade-in 0.4s ease-out;
+  animation: fade-in 0.3s ease-out;
 }
 
 .animate-slide-down {
-  animation: slide-down 0.3s ease-out;
+  animation: slide-down 0.25s ease-out;
 }
 
 .animate-slide-up {
-  animation: slide-up 0.3s ease-out;
+  animation: slide-up 0.25s ease-out;
 }
 
 .animate-pulse {
@@ -101,17 +157,53 @@
 }
 
 .animate-shake {
-  animation: shake 0.5s ease-in-out;
+  animation: shake 0.4s ease-in-out;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-slide-down,
+  .animate-slide-up,
+  .animate-pulse,
+  .animate-bounce,
+  .animate-shake {
+    animation: none;
+  }
+  
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Base Styles */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-background text-text-primary antialiased;
+    font-family: var(--font-sans);
+    letter-spacing: -0.01em;
+  }
+
+  /* Focus visible styles - Glow effect */
+  *:focus-visible {
+    @apply outline-none;
+    box-shadow: var(--glow-md);
+  }
 }
 
 /* Touch optimization */
 .touch-manipulation {
   touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Safe area insets for mobile devices */
@@ -123,4 +215,35 @@ html {
   .safe-area-inset-bottom {
     padding-bottom: max(1rem, env(safe-area-inset-bottom));
   }
+}
+
+/* Utility Classes */
+.focus-ring {
+  @apply focus-visible:outline-none;
+  box-shadow: 0 0 0 0 transparent;
+  transition: box-shadow 0.2s ease-out;
+}
+
+.focus-ring:focus-visible {
+  box-shadow: var(--glow-md);
+}
+
+.glow-inner {
+  box-shadow: var(--glow-inner);
+}
+
+.glow-outer {
+  box-shadow: var(--glow-sm);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Gradient text utility */
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

@@ -1,5 +1,6 @@
-export const validatePhone = (number: string) => {
-  const re = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/
+// Cache regex outside function for better performance (js-hoist-regexp)
+const PHONE_REGEX = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/
 
-  return re.test(number)
+export const validatePhone = (number: string) => {
+  return PHONE_REGEX.test(number)
 }

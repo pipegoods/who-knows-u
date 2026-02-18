@@ -1,6 +1,8 @@
-export const API_WHATSAPP_URL = 'https://api.whatsapp.com/send?phone='
+// Internal constant - used by buildWhatsAppUrl
+const API_WHATSAPP_URL = 'https://api.whatsapp.com/send?phone='
 
-export function removePlus(dialCode: string): string {
+// Internal helper - remove + from dial code
+function removePlus(dialCode: string): string {
   return dialCode.replace('+', '')
 }
 
@@ -20,7 +22,7 @@ export async function shareApp(): Promise<boolean> {
         url: shareUrl,
       })
       return true
-    } catch (error) {
+    } catch {
       // User cancelled or error
       return false
     }

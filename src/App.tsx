@@ -47,7 +47,7 @@ export default function App() {
   })
 
   return (
-    <div className='min-h-screen bg-linear-to-b from-slate-100 via-white to-slate-100'>
+    <div className='min-h-screen bg-background'>
       <div className='container px-4 sm:px-6 grid place-content-center min-h-screen mx-auto max-w-md py-6 sm:py-8 relative'>
         <UpdateBanner />
         <Header />
@@ -60,14 +60,15 @@ export default function App() {
           />
         </section>
 
-        {isValidPhone && (
+        {/* Use explicit ternary for conditional rendering (rendering-conditional-render) */}
+        {isValidPhone ? (
           <ActionButtons
             whatsappUrl={whatsappUrl}
             onCopy={handleCopyLink}
             onWhatsAppClick={success}
             copied={copied}
           />
-        )}
+        ) : null}
 
         <Suspense fallback={<LoadingSkeleton />}>
           <Footer onShareApp={handleShare} />

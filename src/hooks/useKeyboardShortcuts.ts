@@ -29,8 +29,9 @@ export function useKeyboardShortcuts({
       }
     }
 
-    window.addEventListener('keydown', handleKeyPress)
-    return () => window.removeEventListener('keydown', handleKeyPress)
+    // Use capture phase for better performance (client-event-listeners)
+    window.addEventListener('keydown', handleKeyPress, { capture: true })
+    return () => window.removeEventListener('keydown', handleKeyPress, { capture: true })
   }, [isValidPhone, inputRef, light, onEnterPress])
 }
 

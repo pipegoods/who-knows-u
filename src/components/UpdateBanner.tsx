@@ -38,6 +38,7 @@ export default function UpdateBanner() {
                 window.location.reload()
               }}
               className='px-3 py-1.5 sm:py-1 bg-green-500 hover:bg-green-600 active:bg-green-700 rounded-full sm:rounded text-xs sm:text-sm font-medium transition-colors duration-200 touch-manipulation'
+              aria-label='Actualizar aplicación'
             >
               Actualizar
             </button>
