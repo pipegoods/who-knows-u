@@ -1,28 +1,55 @@
 {
-  "name": "Who knows U",
-  "short_name": "Who Kws U",
-  
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
-  "display": "standalone",
+  "id": "/",
+  "name": "Who Knows U",
+  "short_name": "WhoKwsU",
+  "description": "Envia mensajes de WhatsApp sin guardar el numero en contactos.",
+  "lang": "es-CO",
+  "dir": "ltr",
   "start_url": "/",
   "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#f7f6f3",
+  "background_color": "#f7f6f3",
+  "categories": ["utilities", "productivity", "communication"],
   "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
     {
       "src": "/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/android-chrome-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/android-chrome-192x192-maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/android-chrome-512x512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/capture-app.jpg",
+      "sizes": "2400x1260",
+      "type": "image/jpeg",
+      "form_factor": "wide"
     }
   ],
   "shortcuts": [
@@ -31,14 +58,26 @@
       "short_name": "Abrir chat",
       "description": "Abrir la pantalla principal para enviar un mensaje",
       "url": "/",
-      "icons": [{ "src": "/android-chrome-192x192.png", "sizes": "192x192" }]
+      "icons": [
+        {
+          "src": "/android-chrome-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     },
     {
       "name": "Copiar link",
       "short_name": "Copiar",
-      "description": "Copiar link rápido al portapapeles",
+      "description": "Copiar link rapido al portapapeles",
       "url": "/",
-      "icons": [{ "src": "/android-chrome-192x192.png", "sizes": "192x192" }]
+      "icons": [
+        {
+          "src": "/android-chrome-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     }
   ]
 }
