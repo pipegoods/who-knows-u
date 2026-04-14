@@ -1,9 +1,17 @@
 /**
  * Hook para haptic feedback en dispositivos móviles
  * Usa la API de Vibration cuando está disponible
+ * Respeta la preferencia de movimiento reducido
  */
 export function useHapticFeedback() {
+  const prefersReducedMotion =
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
   const vibrate = (pattern: number | number[] = 10) => {
+    // Respetar prefers-reduced-motion
+    if (prefersReducedMotion) return
+
     // Verificar si el navegador soporta la API
     if ('vibrate' in navigator) {
       try {

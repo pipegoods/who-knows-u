@@ -27,8 +27,12 @@ export default function UpdateBanner() {
   if (!needRefresh && !offlineReady) return null
 
   return (
-    <div className='fixed top-2 sm:top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-[calc(100%-2rem)] sm:max-w-md px-4 sm:px-0'>
-      <div className='px-3 sm:px-4 py-2 bg-slate-900 text-white rounded-full shadow-lg flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3'>
+    <div
+      role='status'
+      aria-live='polite'
+      className='fixed top-2 sm:top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-[calc(100%-2rem)] sm:max-w-md px-4 sm:px-0'
+    >
+      <div className='px-3 sm:px-4 py-2 bg-text-primary text-surface rounded-full shadow-lg flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3'>
         {needRefresh ? (
           <>
             <span className='text-xs sm:text-sm text-center'>Nueva versión disponible</span>
@@ -37,7 +41,7 @@ export default function UpdateBanner() {
                 // trigger update by reloading the page — registerSW provides full reload via location.reload
                 window.location.reload()
               }}
-              className='px-3 py-1.5 sm:py-1 bg-green-500 hover:bg-green-600 active:bg-green-700 rounded-full sm:rounded text-xs sm:text-sm font-medium transition-colors duration-200 touch-manipulation'
+                className='px-3 py-1.5 sm:py-1 bg-primary-light hover:bg-primary-border active:bg-surface-tertiary rounded-full sm:rounded text-xs sm:text-sm font-medium transition-colors duration-200 touch-manipulation focus-ring text-text-primary'
               aria-label='Actualizar aplicación'
             >
               Actualizar

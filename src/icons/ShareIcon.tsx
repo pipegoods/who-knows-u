@@ -9,6 +9,7 @@ export default function ShareIcon({ className }: { className?: string }) {
       strokeLinecap='round'
       strokeLinejoin='round'
       className={className}
+      aria-hidden='true'
     >
       <path d='M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8' />
       <polyline points='16 6 12 2 8 6' />

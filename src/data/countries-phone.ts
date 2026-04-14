@@ -1,3 +1,5 @@
+import type { CountryFlag } from '@/types'
+
 export const COUNTRY_CO: CountryFlag = {
   name: 'Colombia',
   dial_code: '+57',

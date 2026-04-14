@@ -4,17 +4,17 @@ import { memo } from 'react'
 
 const buttonVariants = cva(
   // Base styles - shared across all variants
-  'inline-flex items-center justify-center whitespace-nowrap font-medium transition-[background-color,box-shadow,transform,border-color] duration-200 touch-manipulation focus-ring disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center whitespace-nowrap font-semibold transition-[background-color,box-shadow,transform,border-color] duration-200 touch-manipulation focus-ring disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
         primary:
-          'bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-primary-active text-primary-foreground shadow-md hover:shadow-lg hover:glow-outer hover:scale-[1.01] active:scale-[0.99]',
+          'bg-primary text-primary-foreground border border-transparent shadow-sm hover:bg-primary-hover hover:shadow-md hover:-translate-y-px active:translate-y-0 active:scale-[0.98] font-semibold tracking-tight',
         secondary:
-          'bg-surface border border-border-soft hover:bg-surface-elevated hover:border-border-emphasis hover:glow-inner active:bg-surface text-text-primary shadow-sm hover:shadow-md hover:scale-[1.01] active:scale-[0.99]',
+          'bg-surface border border-border-soft hover:border-border text-text-primary hover:bg-surface-elevated active:bg-surface-subtle shadow-xs hover:-translate-y-px active:translate-y-0',
         ghost:
-          'bg-transparent hover:bg-surface-elevated text-text-primary hover:glow-inner',
-        link: 'text-primary underline-offset-4 hover:underline p-0 h-auto',
+          'bg-transparent hover:bg-surface-elevated text-text-primary active:bg-surface-subtle',
+        link: 'text-primary underline-offset-4 hover:underline p-0 h-auto font-semibold',
       },
       size: {
         sm: 'h-9 px-4 py-2 text-sm rounded-lg',

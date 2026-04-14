@@ -8,14 +8,14 @@ const HEADER_DESCRIPTION =
 
 function Header() {
   return (
-    <header className='text-center mb-8 sm:mb-12'>
-      <div className='flex items-center justify-center gap-3 mb-4'>
-        <h1 className='text-4xl sm:text-5xl font-bold font-dyna text-gradient tracking-tight text-balance'>
+    <header className='mb-5 sm:mb-10'>
+      <div className='flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4 mb-3 sm:mb-4'>
+        <h1 className='text-[2.15rem] sm:text-5xl lg:text-6xl font-bold font-dyna text-text-primary tracking-tight text-balance leading-[0.94] sm:leading-[0.98]'>
           {HEADER_TITLE}
         </h1>
         <InstallButton />
       </div>
-      <p className='text-sm sm:text-base text-text-secondary leading-relaxed px-4 max-w-md mx-auto text-balance'>
+      <p className='text-sm sm:text-base text-text-secondary leading-relaxed max-w-xl sm:max-w-2xl text-balance'>
         {HEADER_DESCRIPTION}
       </p>
     </header>

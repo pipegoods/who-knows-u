@@ -6,7 +6,7 @@ import '@fontsource/poppins'
 import '@fontsource/dynapuff'
 import './index.css'
 
-createRoot(document.getElementById('root') as HTMLElement).render(
+createRoot(document.getElementById('app') as HTMLElement).render(
   <StrictMode>
     <ErrorBoundary>
       <App />

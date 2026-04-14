@@ -1,67 +1,53 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Custom font families with Fontsource */
-  --font-dyna: 'DynaPuff', cursive;
-  --font-sans: 'Poppins', sans-serif;
+  /* Font Families - Imported from @fontsource */
+  --font-display: 'DynaPuff', system-ui, sans-serif;
+  --font-body: 'Poppins', system-ui, sans-serif;
 
-  /* Design Tokens - OKLCH Colors - Nueva Identidad Visual */
-  
-  /* Primary (Violeta moderno digital) */
-  --color-primary: oklch(65% 0.15 280);
+  /* Primary Accent - Deep green */
+  --color-primary: oklch(42% 0.09 162);
   --color-primary-foreground: oklch(100% 0 0);
-  --color-primary-hover: oklch(60% 0.15 280);
-  --color-primary-active: oklch(55% 0.15 280);
-  --color-primary-light: oklch(95% 0.05 280);
-  --color-primary-border: oklch(80% 0.08 280);
+  --color-primary-hover: oklch(36% 0.08 162);
+  --color-primary-active: oklch(32% 0.07 162);
+  --color-primary-light: oklch(94% 0.02 162);
+  --color-primary-border: oklch(85% 0.03 162);
 
-  /* Background & Surfaces */
-  --color-background: oklch(98% 0.01 280);
-  --color-surface: oklch(100% 0 0);
+  /* Background & Surfaces - Warm monochrome */
+  --color-background: oklch(97% 0.008 96);
+  --color-surface: oklch(99% 0.004 96);
   --color-surface-elevated: oklch(100% 0 0);
-  --color-surface-subtle: oklch(96% 0.005 280);
+  --color-surface-subtle: oklch(95% 0.008 96);
+  --color-surface-tertiary: oklch(91% 0.01 96);
 
   /* Text Hierarchy */
-  --color-text-primary: oklch(25% 0.02 250);
-  --color-text-secondary: oklch(50% 0.02 250);
-  --color-text-tertiary: oklch(65% 0.02 250);
-  --color-text-muted: oklch(75% 0.01 250);
+  --color-text-primary: oklch(22% 0.014 95);
+  --color-text-secondary: oklch(38% 0.012 95);
+  --color-text-tertiary: oklch(52% 0.01 95);
+  --color-text-muted: oklch(62% 0.009 95);
 
-  /* Borders - Progression System (muy sutiles) */
-  --color-border: oklch(88% 0.01 250);
-  --color-border-soft: oklch(92% 0.005 250);
-  --color-border-emphasis: oklch(70% 0.05 280);
-  --color-border-focus: oklch(65% 0.15 280);
+  /* Borders - Progression System */
+  --color-border: oklch(84% 0.006 96);
+  --color-border-soft: oklch(90% 0.005 96);
+  --color-border-focus: oklch(42% 0.09 162);
 
-  /* Control Tokens (Form Inputs) */
-  --color-control-bg: oklch(96% 0.005 280);
-  --color-control-border: oklch(88% 0.01 250);
-  --color-control-border-hover: oklch(75% 0.05 280);
-  --color-control-border-focus: oklch(65% 0.15 280);
+  /* Focus Ring */
+  --focus-ring-width: 3px;
 
-  /* Accent (Amarillo ámbar para highlights) */
-  --color-accent: oklch(85% 0.12 70);
-  --color-accent-hover: oklch(80% 0.12 70);
+  /* Shadows - Flat and diffuse */
+  --shadow-xs: 0 1px 2px 0 oklch(12% 0.01 95 / 0.08);
+  --shadow-sm: 0 4px 10px -6px oklch(12% 0.01 95 / 0.1);
+  --shadow-md: 0 10px 20px -10px oklch(12% 0.01 95 / 0.12);
+  --shadow-lg: 0 18px 30px -16px oklch(12% 0.01 95 / 0.14);
+  --shadow-xl: 0 24px 36px -22px oklch(12% 0.01 95 / 0.16);
 
-  /* Radius Tokens */
-  --radius-sm: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.5rem;
-
-  /* Shadow Tokens - Muy sutiles */
-  --shadow-sm: 0 1px 2px 0 oklch(0% 0 0 / 0.03);
-  --shadow-md: 0 4px 6px -1px oklch(0% 0 0 / 0.05), 0 2px 4px -2px oklch(0% 0 0 / 0.03);
-  --shadow-lg: 0 10px 15px -3px oklch(0% 0 0 / 0.05), 0 4px 6px -4px oklch(0% 0 0 / 0.03);
-  
-  /* Glow Effects */
-  --glow-sm: 0 0 0 2px oklch(65% 0.15 280 / 0.1);
-  --glow-md: 0 0 0 3px oklch(65% 0.15 280 / 0.15);
-  --glow-lg: 0 0 0 6px oklch(65% 0.15 280 / 0.1);
-  --glow-inner: inset 0 0 0 1px oklch(65% 0.15 280 / 0.2);
+  /* Focus and micro-glow */
+  --glow-focus: 0 0 0 var(--focus-ring-width) oklch(42% 0.09 162 / 0.25);
+  --glow-inner: inset 0 0 0 1px oklch(42% 0.05 162 / 0.25);
+  --glow-sm: 0 10px 20px -16px oklch(42% 0.09 162 / 0.35);
 }
 
-/* Animations - Compositor-friendly (transform + opacity only) */
+/* Animations - Compositor-friendly */
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -170,7 +156,7 @@
   .animate-shake {
     animation: none;
   }
-  
+
   * {
     transition-duration: 0.01ms !important;
   }
@@ -189,14 +175,20 @@
 
   body {
     @apply bg-background text-text-primary antialiased;
-    font-family: var(--font-sans);
+    font-family: var(--font-body, 'Poppins', system-ui, sans-serif);
     letter-spacing: -0.01em;
   }
 
-  /* Focus visible styles - Glow effect */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display, 'DynaPuff', system-ui, sans-serif);
+    font-weight: 700;
+  }
+
+  /* Focus visible styles using box-shadow instead of outline */
   *:focus-visible {
     @apply outline-none;
-    box-shadow: var(--glow-md);
+    box-shadow: var(--glow-focus);
+    transition: box-shadow 0.2s ease-out;
   }
 }
 
@@ -211,21 +203,64 @@
   .safe-area-inset-top {
     padding-top: max(1rem, env(safe-area-inset-top));
   }
-  
+
   .safe-area-inset-bottom {
     padding-bottom: max(1rem, env(safe-area-inset-bottom));
   }
 }
 
 /* Utility Classes */
+
+/* Font Families */
+.font-dyna {
+  font-family: var(--font-display, 'DynaPuff', system-ui, sans-serif);
+}
+
+.font-poppins {
+  font-family: var(--font-body, 'Poppins', system-ui, sans-serif);
+}
+
+/* Visually hidden - accessible to screen readers only */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Skip link for keyboard navigation */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  padding: 0.5rem 1rem;
+  z-index: 100;
+  border-radius: 0 0 var(--radius-sm) 0;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.2s ease-out;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Focus ring utility - uses box-shadow instead of outline */
 .focus-ring {
-  @apply focus-visible:outline-none;
+  @apply outline-none;
   box-shadow: 0 0 0 0 transparent;
   transition: box-shadow 0.2s ease-out;
 }
 
 .focus-ring:focus-visible {
-  box-shadow: var(--glow-md);
+  box-shadow: var(--glow-focus);
 }
 
 .glow-inner {
@@ -240,10 +275,244 @@
   text-wrap: balance;
 }
 
-/* Gradient text utility */
-.text-gradient {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Enhanced button variants */
+.btn-primary {
+  @apply px-6 py-3 rounded-xl font-medium border-0 outline-none transition-all duration-200;
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+.btn-primary:focus-visible {
+  box-shadow: var(--glow-focus);
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-hover);
+}
+
+.btn-primary:active {
+  background: var(--color-primary-active);
+}
+
+.btn-whatsapp {
+  @apply px-6 py-3 rounded-xl font-medium border-0 outline-none transition-all duration-200;
+  background: #25D366;
+  color: white;
+}
+
+.btn-whatsapp:focus-visible {
+  box-shadow: var(--glow-focus);
+}
+
+.btn-whatsapp:hover {
+  background: #12C75E;
+}
+
+.btn-whatsapp:active {
+  background: #1DA851;
+}
+
+/* Enhanced card styles */
+.card {
+  @apply bg-surface border border-border-soft rounded-xl shadow-lg;
+}
+
+/* ============================================================================
+   UX IMPROVEMENTS - Form Inputs & Controls (From UX Principles Skill)
+   ============================================================================ */
+
+/* Input focus states with proper visual feedback */
+input[type="tel"],
+input[type="text"],
+input[type="email"],
+textarea {
+  @apply transition-[border-color,box-shadow,background-color,color] duration-200;
+}
+
+input[type="tel"]:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  box-shadow: 0 0 0 1px var(--color-primary-border), var(--glow-focus);
+}
+
+input[type="tel"]:disabled,
+input[type="text"]:disabled,
+input[type="email"]:disabled,
+textarea:disabled {
+  @apply cursor-not-allowed opacity-60 bg-surface-subtle;
+}
+
+/* Error state */
+input[aria-invalid="true"],
+textarea[aria-invalid="true"] {
+  border-color: oklch(65% 0.15 15) !important;
+}
+
+input[aria-invalid="true"]:focus,
+textarea[aria-invalid="true"]:focus {
+  box-shadow: 0 0 0 1px oklch(65% 0.15 15),
+              0 0 0 4px oklch(65% 0.15 15 / 0.2) !important;
+}
+
+/* Label improvements */
+label {
+  @apply block text-sm font-semibold text-text-primary transition-colors duration-200;
+}
+
+label.active {
+  color: var(--color-primary);
+}
+
+/* Button improvements - Better hover states */
+button, [role="button"] {
+  @apply transition-[background-color,border-color,box-shadow,transform,color] duration-200;
+}
+
+/* Touch target size (minimum 44x44px for accessibility) */
+button:not(.inline), 
+[role="button"]:not(.inline) {
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+}
+
+/* Visual feedback on hover */
+@media (hover: hover) and (pointer: fine) {
+  button:hover:not(:disabled), 
+  [role="button"]:hover:not(:disabled) {
+    transform: translateY(-1px);
+  }
+}
+
+/* Active/pressed state */
+button:active:not(:disabled), 
+[role="button"]:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Disabled state */
+button:disabled, 
+[role="button"]:disabled {
+  @apply cursor-not-allowed opacity-50;
+}
+
+/* ============================================================================
+   Component-Specific UX Enhancements
+   ============================================================================ */
+
+/* Loading skeleton animation */
+@keyframes skeleton-loading {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.skeleton {
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+  @apply bg-surface-subtle rounded-lg;
+}
+
+/* Validation feedback animations */
+.validation-success {
+  color: rgb(22 163 74);
+  font-weight: 600;
+  animation: fade-in 0.3s ease-out;
+}
+
+.validation-error {
+  color: rgb(217 119 6);
+  font-weight: 600;
+  animation: fade-in 0.3s ease-out;
+}
+
+.validation-hint {
+  @apply text-text-tertiary font-normal;
+}
+
+/* ============================================================================
+   Accessibility & Motion Principles
+   ============================================================================ */
+
+/* All transitions respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus visible for keyboard navigation (already in base, but reinforcing) */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--glow-focus);
+}
+
+/* Selection colors matching brand */
+::selection {
+  background-color: var(--color-primary-light);
+  color: var(--color-text-primary);
+}
+
+::-moz-selection {
+  background-color: var(--color-primary-light);
+  color: var(--color-text-primary);
+}
+
+/* ============================================================================
+   Mobile-First Responsive Defaults
+   ============================================================================ */
+
+/* Comfortable spacing on touch devices */
+@media (max-width: 640px) {
+  /* Increase touch targets for mobile */
+  button, [role="button"], a[role="button"] {
+    min-height: 3rem;
+    min-width: 3rem;
+  }
+
+  /* Improve form field sizing on mobile */
+  input[type="tel"],
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    font-size: 16px;
+    @apply py-4 px-5;
+  }
+
+  /* Better spacing between form elements */
+  label {
+    @apply mb-2.5;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  :root {
+    --color-primary: oklch(45% 0.14 162);
+    --color-text-primary: oklch(16% 0.015 95);
+    --color-border: oklch(72% 0.02 95);
+  }
+}
+
+/* ============================================================================
+   Print Styles (Accessibility)
+   ============================================================================ */
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    line-height: 1.5;
+  }
+
+  a {
+    text-decoration: underline;
+  }
 }

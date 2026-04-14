@@ -1,116 +1,84 @@
-import {
-  useState,
-  useCallback,
-  useMemo,
-  useEffect,
-  useRef,
-  useReducer,
-} from 'react'
-import { createPortal } from 'react-dom'
-import { getCurrentCountry } from '@/data/countries-phone'
-import { useHapticFeedback } from '@/hooks/useHapticFeedback'
+import { useState, useCallback, useEffect, useRef, useMemo } from 'react'
+import { Country } from '@/types'
 import { CountryDropdownOverlay } from './CountryDropdownOverlay'
 import { CountryDropdownPanel } from './CountryDropdownPanel'
 import { CountrySelectorTrigger } from './CountrySelectorTrigger'
+import { COUNTRIES } from '@/utils/countryUtils'
+import React from 'react'
 
 interface CountrySelectorProps {
   dialCode: string
   onDialCodeChange: (dialCode: string) => void
-}
-
-type ButtonPosition = {
-  top: number
-  left: number
-  width: number
-} | null
-
-type PositionAction =
-  | { type: 'reset' }
-  | { type: 'update'; position: ButtonPosition }
-
-function positionReducer(
-  state: ButtonPosition,
-  action: PositionAction
-): ButtonPosition {
-  switch (action.type) {
-    case 'reset':
-      return null
-    case 'update':
-      return action.position
-    default:
-      return state
-  }
+  countries?: Country[]
+  triggerId?: string
 }
 
 export default function CountrySelector({
   dialCode,
   onDialCodeChange,
+  countries = COUNTRIES,
+  triggerId = 'country-selector-trigger',
 }: CountrySelectorProps) {
-  const [open, setOpen] = useState<boolean>(false)
-  const { light } = useHapticFeedback()
-  const buttonRef = useRef<HTMLElement | null>(null)
-  const dropdownRef = useRef<HTMLDivElement | null>(null)
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const buttonRef = useRef<HTMLButtonElement | null>(null)
+  const dropdownRef = useRef<HTMLDivElement>(null)
+  const listboxId = 'country-listbox'
 
-  const currentCountry = useMemo(() => getCurrentCountry(dialCode), [dialCode])
+  const currentCountry = useMemo(() => {
+    return countries.find((c) => c.dial_code === dialCode) || null
+  }, [dialCode, countries])
 
   const handleClose = useCallback(() => {
-    setOpen(false)
+    setIsOpen(false)
   }, [])
 
   const handleCountrySelect = useCallback(
     (countryDialCode: string) => {
-      light()
       onDialCodeChange(countryDialCode)
-      setOpen(false)
+      setIsOpen(false)
+      // Restore focus to trigger after selection
+      requestAnimationFrame(() => {
+        if (buttonRef.current) {
+          buttonRef.current.focus()
+        }
+      })
     },
-    [light, onDialCodeChange]
+    [onDialCodeChange]
   )
 
   const handleToggle = useCallback(
     (e: React.MouseEvent) => {
       e.preventDefault()
       e.stopPropagation()
-      light()
-      setOpen((prev) => !prev)
+      setIsOpen((prev) => !prev)
     },
-    [light]
-  )
-
-  const handleTriggerKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault()
-        light()
-        setOpen((prev) => !prev)
-      }
-    },
-    [light]
+    []
   )
 
   // Cerrar dropdown al redimensionar
   useEffect(() => {
-    if (!open) return
+    if (!isOpen) return
     const handleResize = () => {
-      setTimeout(() => setOpen(false), 0)
+      setTimeout(() => setIsOpen(false), 0)
     }
     window.addEventListener('resize', handleResize, { passive: true })
     return () => window.removeEventListener('resize', handleResize)
-  }, [open])
+  }, [isOpen])
 
   // Prevenir scroll del body cuando el modal está abierto en mobile
   useEffect(() => {
-    if (open && typeof window !== 'undefined' && window.innerWidth < 640) {
+    if (isOpen && typeof window !== 'undefined' && window.innerWidth < 640) {
       const originalOverflow = document.body.style.overflow
       document.body.style.overflow = 'hidden'
       return () => {
         document.body.style.overflow = originalOverflow
       }
     }
-  }, [open])
+  }, [isOpen])
 
-  // Cerrar al hacer click fuera del dropdown
+  // Cerrar al hacer click fuera del dropdown y Escape
   useEffect(() => {
-    if (!open) return
+    if (!isOpen) return
 
     const handleClickOutside = (e: Event) => {
       const target = e.target as Node
@@ -134,6 +102,12 @@ export default function CountrySelector({
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         handleClose()
+        // Restore focus to trigger
+        requestAnimationFrame(() => {
+          if (buttonRef.current) {
+            buttonRef.current.focus()
+          }
+        })
       }
     }
 
@@ -145,74 +119,77 @@ export default function CountrySelector({
       document.removeEventListener('touchstart', handleClickOutside)
       document.removeEventListener('keydown', handleEscape)
     }
-  }, [open, handleClose])
+  }, [isOpen, handleClose])
 
-  // Obtener posición del botón para el dropdown en desktop
-  const [buttonPosition, dispatchPosition] = useReducer(positionReducer, null)
-
+  // Focus trap inside dropdown when open
   useEffect(() => {
-    if (!open) {
-      const timeoutId = setTimeout(() => {
-        dispatchPosition({ type: 'reset' })
-      }, 0)
-      return () => clearTimeout(timeoutId)
-    }
+    if (!isOpen) return
+    if (typeof window !== 'undefined' && window.innerWidth >= 640) return
 
-    if (!buttonRef.current) return
+    const handleTabKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab' || !dropdownRef.current) return
 
-    const updatePosition = () => {
-      if (buttonRef.current) {
-        const rect = buttonRef.current.getBoundingClientRect()
-        dispatchPosition({
-          type: 'update',
-          position: {
-            top: rect.bottom + window.scrollY,
-            left: rect.left + window.scrollX,
-            width: rect.width,
-          },
-        })
+      const focusableElements = dropdownRef.current.querySelectorAll<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      )
+      if (focusableElements.length === 0) return
+
+      const firstElement = focusableElements[0]
+      const lastElement = focusableElements[focusableElements.length - 1]
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          e.preventDefault()
+          lastElement.focus()
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          e.preventDefault()
+          firstElement.focus()
+        }
       }
     }
 
-    updatePosition()
-    window.addEventListener('scroll', updatePosition, {
-      passive: true,
-      capture: true,
-    })
-    window.addEventListener('resize', updatePosition, { passive: true })
+    document.addEventListener('keydown', handleTabKey)
+    return () => document.removeEventListener('keydown', handleTabKey)
+  }, [isOpen])
 
-    return () => {
-      window.removeEventListener('scroll', updatePosition, { capture: true })
-      window.removeEventListener('resize', updatePosition)
-    }
-  }, [open])
-
-  const dropdownContent =
-    open && (
-      <>
-        <CountryDropdownOverlay onClose={handleClose} />
-        <CountryDropdownPanel
-          dropdownRef={dropdownRef}
-          buttonPosition={buttonPosition}
-          dialCode={dialCode}
-          onClose={handleClose}
-          onCountrySelect={handleCountrySelect}
-        />
-      </>
-    )
+  // Focus first focusable element in dropdown when it opens
+  useEffect(() => {
+    if (!isOpen) return
+    const timeoutId = setTimeout(() => {
+      const searchInput = dropdownRef.current?.querySelector<HTMLInputElement>('#country-search')
+      if (searchInput) {
+        searchInput.focus()
+      }
+    }, 100)
+    return () => clearTimeout(timeoutId)
+  }, [isOpen])
 
   return (
-    <>
+    <div className='relative'>
       <CountrySelectorTrigger
-        isOpen={open}
+        triggerId={triggerId}
+        listboxId={listboxId}
+        isOpen={isOpen}
         currentCountryImage={currentCountry?.image}
         currentCountryName={currentCountry?.name}
         buttonRef={buttonRef}
         onToggle={handleToggle}
-        onKeyDown={handleTriggerKeyDown}
       />
-      {typeof document !== 'undefined' &&
-        createPortal(dropdownContent, document.body)}
-    </>
+      {isOpen ? (
+        <CountryDropdownPanel
+          dropdownRef={dropdownRef}
+          dialCode={dialCode}
+          countries={countries}
+          onClose={handleClose}
+          onCountrySelect={handleCountrySelect}
+          listboxId={listboxId}
+        />
+      ) : null}
+      {isOpen && (
+        <CountryDropdownOverlay onClose={handleClose} />
+      )}
+    </div>
   )
 }
